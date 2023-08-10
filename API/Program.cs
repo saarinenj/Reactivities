@@ -15,6 +15,15 @@ builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddCors(opt =>
+{
+   opt.AddPolicy("CorsPolicy", policy =>
+   {
+        // allow any method or any header from the react client-app running in localhost port 3000
+        policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+   });
+});
+
 // builder.Services.AddDbContext<DataContext>(opt =>
 // {
 //     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection");
@@ -28,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
