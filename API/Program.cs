@@ -1,4 +1,5 @@
 using Application.Activities;
+using Application.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -28,6 +29,7 @@ builder.Services.AddCors(opt =>
 
 builder.Services.AddMediatR(typeof(List.Handler));
 
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 // builder.Services.AddDbContext<DataContext>(opt =>
 // {
