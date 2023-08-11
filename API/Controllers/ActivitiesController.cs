@@ -15,10 +15,28 @@ namespace API.Controllers
         {
             return await Mediator.Send(new List.Query());
         }
+
         [HttpGet("{id}")] //api/activities/fdfff
         public async Task<ActionResult<Activity>> GetActivity(Guid id)
         {
             return await Mediator.Send(new Details.Query{Id = id});
-        }   
+        }
+
+
+        //  IActionResult gives way to access HTTP status
+        [HttpPost]
+        public async Task<IActionResult> CreateActivity(Activity activity)
+        {
+            return Ok(await Mediator.Send(new Create.Command{Activity = activity}));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditActivity(Guid id, Activity activity)
+        {
+            activity.Id = id;
+            return Ok(await Mediator.Send(new Edit.Command{Activity = activity}));
+
+        }
+
     }
 }
