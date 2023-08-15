@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Button, Container, List } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
+import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 
 function App() {
   // activities is variable to store activities
@@ -22,14 +23,8 @@ function App() {
   return (
     <Fragment>
       <NavBar />
-      <Container style={{marginTop: '7em'}}>
-        <List>
-          {activities.map(activity => (
-            <List.Item key={activity.id}>
-              {activity.title}
-            </List.Item>
-          ))}
-        </List>
+      <Container style={{ marginTop: '7em' }}>
+        <ActivityDashboard activities={activities} />
       </Container>
     </Fragment>
   );
