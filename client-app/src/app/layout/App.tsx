@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Header, List } from 'semantic-ui-react';
+import { Button, List } from 'semantic-ui-react';
+import { Activity } from '../models/activity';
+import NavBar from './NavBar';
 
 function App() {
   // activities is variable to store activities
   // setActivities is a function to call
-  const [activities, setActivities] = useState([]);
+  // note: specifying a Activity type here provides type safety and intellisense
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/activities')
+    // were expecting to get back an array of activities
+    axios.get<Activity[]>('http://localhost:5000/api/activities')
       .then(response => {
         setActivities(response.data);
 
@@ -17,16 +21,15 @@ function App() {
 
   return (
     <div>
-      <Header as='h2' icon='users' content='Reactivities' />
+      <NavBar />
 
       <List>
-        {activities.map((activity: any) => (
+        {activities.map(activity => (
           <List.Item key={activity.id}>
             {activity.title}
           </List.Item>
         ))}
       </List>
-      <Button content='test' />
 
     </div>
   );
