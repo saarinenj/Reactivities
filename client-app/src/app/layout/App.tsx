@@ -10,6 +10,8 @@ function App() {
   // setActivities is a function to call
   // note: specifying a Activity type here provides type safety and intellisense
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     // were expecting to get back an array of activities
@@ -20,11 +22,36 @@ function App() {
       })
   }, []) // the [] brackets are needed to prevent client from requesting list of activities in a loop forever
 
+  function handleSelectActivity(id: string) {
+    setSelectedActivity(activities.find(x => x.id === id))
+  }
+
+  function handleCancelSelectActivity() {
+    setSelectedActivity(undefined);
+  }
+
+  function handleFormOpen(id?: string) {
+    id ? handleSelectActivity(id) : handleCancelSelectActivity();
+    setEditMode(true);
+  }
+
+  function handleFormClose() {
+    setEditMode(false);
+  }
+
   return (
     <Fragment>
-      <NavBar />
+      <NavBar openForm={handleFormOpen} />
       <Container style={{ marginTop: '7em' }}>
-        <ActivityDashboard activities={activities} />
+        <ActivityDashboard 
+        activities={activities}
+        selectedActivity={selectedActivity}
+        selectActivity={handleSelectActivity}
+        cancelSelectActivity={handleCancelSelectActivity} 
+        editMode={editMode}
+        openForm={handleFormOpen}
+        closeForm={handleFormClose}
+        />
       </Container>
     </Fragment>
   );
