@@ -3,6 +3,7 @@ import { Grid, List } from 'semantic-ui-react';
 import { Activity } from '../../../app/models/activity';
 import ActivityList from './ActivityList';
 import ActivityDetails from '../details/ActivityDetails';
+import ActivityForm from '../form/ActivityForm';
 
 // publish list of activities in properties interface
 interface Props {
@@ -19,6 +20,7 @@ export default function ActivityDashboard({activities}: Props) {
                 { // making sure component is only loaded if there is an activity in index zero
                 activities[0] && 
                 <ActivityDetails activity={activities[0]}/>}
+                <ActivityForm />
             </Grid.Column>
         </Grid>
 
