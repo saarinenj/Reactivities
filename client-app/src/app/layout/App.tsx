@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Container } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import {v4 as uuid} from 'uuid';
-
+import agent from '../api/agent';
 
 function App() {
   // activities is variable to store activities
@@ -17,10 +16,8 @@ function App() {
 
   useEffect(() => {
     // were expecting to get back an array of activities
-    axios.get<Activity[]>('http://localhost:5000/api/activities')
-      .then(response => {
-        setActivities(response.data);
-
+    agent.Activities.list().then(response => {
+        setActivities(response);
       })
   }, []) // the [] brackets are needed to prevent client from requesting list of activities in a loop forever
 
