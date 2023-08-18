@@ -17,6 +17,11 @@ function App() {
   useEffect(() => {
     // were expecting to get back an array of activities
     agent.Activities.list().then(response => {
+      let activities: Activity[] = [];
+      response.forEach(activity => {
+        activity.date = activity.date.split('T')[0];
+        activities.push(activity);
+      })
         setActivities(response);
       })
   }, []) // the [] brackets are needed to prevent client from requesting list of activities in a loop forever
