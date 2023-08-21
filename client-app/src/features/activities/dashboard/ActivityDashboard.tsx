@@ -20,7 +20,7 @@ interface Props {
 }
 
 export default function ActivityDashboard({ activities, selectedActivity, deleteActivity,
-    selectActivity, cancelSelectActivity, editMode, openForm, 
+    selectActivity, cancelSelectActivity, editMode, openForm,
     closeForm, createOrEdit, submitting }: Props) {
 
     return (
@@ -29,6 +29,7 @@ export default function ActivityDashboard({ activities, selectedActivity, delete
                 <ActivityList activities={activities}
                     selectActivity={selectActivity}
                     deleteActivity={deleteActivity}
+                    submitting={false}
                 />
             </Grid.Column>
             <Grid.Column width='6'>
