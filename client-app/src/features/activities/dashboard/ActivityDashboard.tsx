@@ -10,16 +10,16 @@ import { observer } from 'mobx-react-lite';
 // publish list of activities in properties interface
 interface Props {
     activities: Activity[];
-    createOrEdit: (activity: Activity) => void;
+
     deleteActivity: (id: string) => void;
     submitting: boolean;
 }
 
 export default observer(function ActivityDashboard({ activities, deleteActivity,
-    createOrEdit, submitting }: Props) {
+    submitting }: Props) {
 
-    const {activityStore} = useStore();
-    const{selectedActivity, editMode} = activityStore;
+    const { activityStore } = useStore();
+    const { selectedActivity, editMode } = activityStore;
     return (
         <Grid>
             <Grid.Column width='10'>
@@ -30,12 +30,9 @@ export default observer(function ActivityDashboard({ activities, deleteActivity,
             </Grid.Column>
             <Grid.Column width='6'>
                 {selectedActivity && !editMode &&
-                    <ActivityDetails/>}
+                    <ActivityDetails />}
                 {editMode &&
-                    <ActivityForm
-                        createOrEdit={createOrEdit}
-                        submitting={submitting}
-                    />}
+                    <ActivityForm />}
             </Grid.Column>
         </Grid>
 
