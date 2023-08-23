@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  Container } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
@@ -10,7 +10,7 @@ import { observer } from 'mobx-react-lite';
 import { useStore } from '../stores/store';
 
 function App() {
-  const {activityStore} = useStore();
+  const { activityStore } = useStore();
 
   // activities is variable to store activities
   // setActivities is a function to call
@@ -23,24 +23,7 @@ function App() {
 
   useEffect(() => {
     activityStore.loadActivities();
-  }, [activityStore]) 
-
-  function handleSelectActivity(id: string) {
-    setSelectedActivity(activities.find(x => x.id === id))
-  }
-
-  function handleCancelSelectActivity() {
-    setSelectedActivity(undefined);
-  }
-
-  function handleFormOpen(id?: string) {
-    id ? handleSelectActivity(id) : handleCancelSelectActivity();
-    setEditMode(true);
-  }
-
-  function handleFormClose() {
-    setEditMode(false);
-  }
+  }, [activityStore])
 
   function handleCreateOrEditActivity(activity: Activity) {
     setSubmitting(true);
@@ -54,10 +37,10 @@ function App() {
     } else {
       activity.id = uuid();
       agent.Activities.create(activity).then(() => {
-      setActivities([...activities, activity])
-      setSelectedActivity(activity);
-      setEditMode(false);
-      setSubmitting(false);
+        setActivities([...activities, activity])
+        setSelectedActivity(activity);
+        setEditMode(false);
+        setSubmitting(false);
       })
 
     }
@@ -81,16 +64,10 @@ function App() {
 
   return (
     <>
-      <NavBar openForm={handleFormOpen} />
-      <Container style={{ marginTop: '7em' }}>       
+      <NavBar />
+      <Container style={{ marginTop: '7em' }}>
         <ActivityDashboard
           activities={activityStore.activities}
-          selectedActivity={selectedActivity}
-          selectActivity={handleSelectActivity}
-          cancelSelectActivity={handleCancelSelectActivity}
-          editMode={editMode}
-          openForm={handleFormOpen}
-          closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
           deleteActivity={handleDeleteActivity}
           submitting={submitting}
