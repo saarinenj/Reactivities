@@ -5,22 +5,16 @@ import ActivityDashboard from '../../features/activities/dashboard/ActivityDashb
 import LoadingComponent from './LoadingComponent';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../stores/store';
+import { Outlet } from 'react-router-dom';
 
 function App() {
-  const { activityStore } = useStore();
 
-  useEffect(() => {
-    activityStore.loadActivities();
-  }, [activityStore])
-
-  
-  if (activityStore.loadingInitial) return <LoadingComponent content='Loading app' />
 
   return (
     <>
       <NavBar />
       <Container style={{ marginTop: '7em' }}>
-        <ActivityDashboard/>
+      <Outlet />
       </Container>
     </>
   );
