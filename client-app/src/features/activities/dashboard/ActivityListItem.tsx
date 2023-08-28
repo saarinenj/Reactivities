@@ -11,6 +11,7 @@ interface Props {
 }
 
 
+
 export default function ActivityListItem({activity}: Props) {
 
     const {activityStore} = useStore();
