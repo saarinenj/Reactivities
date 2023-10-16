@@ -1,9 +1,6 @@
 using API.Extensions;
-using Application.Activities;
-using Application.Core;
-using MediatR;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,8 +17,11 @@ builder.Services.AddApplicationServices(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
+    // app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -32,7 +32,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+ app.MapControllers();
 
 // scope in which service can be used
 using var scope = app.Services.CreateScope();
