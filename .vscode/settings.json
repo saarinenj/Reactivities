@@ -1,3 +1,23 @@
 {
-    "dotnet.defaultSolution": "Reactivities.sln"
+    "dotnet.defaultSolution": "Reactivities.sln",
+    "workbench.colorCustomizations": {
+        "sash.hoverBorder": "#1c5c86",
+        "tab.activeBorder": "#1c5c86",
+        "statusBar.background": "#133f5c",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#1c5c86",
+        "statusBarItem.remoteBackground": "#133f5c",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "activityBar.activeBackground": "#1c5c86",
+        "activityBar.background": "#1c5c86",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#de61ac",
+        "activityBarBadge.foreground": "#133f5c",
+        "commandCenter.border": "#e7e7e799",
+        "titleBar.activeBackground": "#133f5c",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#133f5c99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    }
 }
