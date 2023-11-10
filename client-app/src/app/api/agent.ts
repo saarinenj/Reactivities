@@ -22,7 +22,7 @@ axios.interceptors.response.use(async response => {
         case 400:
             // alternative way to achieve same if using Vite to avoid linting warning:
             // if(config.method == 'get' && Object.prototype.hasOwnProperty.call(data.errors, 'id')){}
-            if(config.method == 'get' && data.errors.hasOwnProperty('id')){
+            if(config.method === 'get' && data.errors.hasOwnProperty('id')){
                 router.navigate('/not-found');
             }
             if(data.errors){
