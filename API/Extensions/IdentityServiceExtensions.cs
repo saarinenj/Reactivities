@@ -1,4 +1,5 @@
 using Domain;
+using Persistence;
 
 namespace API.Extensions
 {
@@ -14,6 +15,8 @@ namespace API.Extensions
             .AddEntityFrameworkStores<DataContext>();
 
             services.AddAuthentication();
+
+            return services;
             
         }
     }
