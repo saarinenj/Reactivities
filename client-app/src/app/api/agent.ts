@@ -74,7 +74,7 @@ const Activities = {
 
 const Account = {
     current: () => requests.get('/account'),
-    login: (user: UserFormValues) => requests.post('/account/login', user),
+    login: (user: UserFormValues) => requests.post<User>('/account/login', user),
     register: (user: UserFormValues) => requests.post<User>('/account/register', user)
 }
 
