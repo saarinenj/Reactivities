@@ -14,20 +14,37 @@ export default class UserStore {
     get isLoggedIn() {
         return !!this.user;
     }
-
-    login = async (creds: UserFormValues) => {
-        try {
-
-            const user : User = await agent.Account.login(creds);
-            store.commonStore.setToken(user.token);
-            runInAction(() => this.user = user);
-            router.navigate('/activities');
-            store.modalStore.closeModal();
-            // console.log(user);
-        } catch (error) {
-            throw error;
+    
+        login = async (creds: UserFormValues) => {
+            try {
+    
+                const user : User = await agent.Account.login(creds);
+                store.commonStore.setToken(user.token);
+                runInAction(() => this.user = user);
+                router.navigate('/activities');
+                store.modalStore.closeModal();
+                // console.log(user);
+            } catch (error) {
+                throw error;
+            }
         }
-    }
+    
+    
+        register = async (creds: UserFormValues) => {
+            try {
+    
+                const user : User = await agent.Account.register(creds);
+                store.commonStore.setToken(user.token);
+                runInAction(() => this.user = user);
+                router.navigate('/activities');
+                store.modalStore.closeModal();
+                // console.log(user);
+            } catch (error) {
+                throw error;
+            }
+        }
+    
+    
     logout = () => {
         store.commonStore.setToken(null);
         this.user = null;
