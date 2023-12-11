@@ -477,3 +477,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+API/reactivities.db-shm
+.gitignore
+API/reactivities.db-wal
